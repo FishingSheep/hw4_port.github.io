@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>作業四 | 台灣主要港口位置</title>
+    <link rel="stylesheet" type="text/css" href="index_css.css">
+    <!-- Include Leaflet CSS file -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
+    <!-- Include Leaflet JavaScript file after Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+</head>
+
+<body>
+    <!--網頁名稱-->
+    <div class="top">
+        <h1 class="title">台灣主要港口位置</h1>
+    </div>
+    <div class="text4final">
+        <h4 style="text-align: center;">By：地理115 林育揚</h2>
+            <!--Leaflet地圖-->
+            <div id="mapid" style="width: 750px; height: 750px; margin: auto;"></div>
+    </div>
+    <!--說明&圖例-->
+    <div style="font-size: 100%; text-align: center;">
+        台灣主要港口分布圖
+        <br><br>
+        橘色是國際商港；藍色是工業港口；綠色是專用軍港
+    </div>
+    <br><br>
+    <!--資料來源-->
+    <div style="font-size: 80%; text-align: center;">
+        (資料來源：<a href="https://zh.wikipedia.org/zh-tw/%E8%87%BA%E7%81%A3%E6%B8%AF%E5%8F%A3">https://zh.wikipedia.org/zh-tw/%E8%87%BA%E7%81%A3%E6%B8%AF%E5%8F%A3</a>)
+    </div>
+    <br><br><br>
+    <script>
+    //initialize with [lat,long],zoom
+    var mymap = L.map('mapid').setView([23.7, 120.7], 8);
+
+    L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mymap);
+
+    //在地圖中顯示橘色的標誌(國際商港)
+    var orangeIcon = L.icon({       //搞點哦潤吉吃吃
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    //藍色標誌(工業港口)
+    var blueIcon = L.icon({ 
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    //綠色標誌(專用軍港)
+    var greenIcon = L.icon({ 
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    //以下為各個主要港口的位置，資料來源：https://zh.wikipedia.org/zh-tw/%E8%87%BA%E7%81%A3%E6%B8%AF%E5%8F%A3
+    L.marker([25.1384, 121.7476], {icon: orangeIcon}).addTo(mymap)
+        .bindPopup("基隆港<br>(國際商港)").openPopup();
+
+    L.marker([24.28, 120.5083], {icon: orangeIcon}).addTo(mymap)
+        .bindPopup("臺中港<br>(國際商港)").openPopup();
+
+    L.marker([22.6130, 120.2777], {icon: orangeIcon}).addTo(mymap)
+        .bindPopup("高雄港<br>(國際商港)").openPopup();
+
+    L.marker([24.0008, 121.6352], {icon: orangeIcon}).addTo(mymap)
+        .bindPopup("花蓮港<br>(國際商港)").openPopup();
+
+    L.marker([23.7866, 120.1661], {icon: blueIcon}).addTo(mymap)
+        .bindPopup("麥寮工業專用港<br>(工業港口)").openPopup();
+
+    L.marker([24.303, 121.761], {icon: blueIcon}).addTo(mymap)
+        .bindPopup("和平工業專業港<br>(工業港口)").openPopup();
+
+    L.marker([25.0305, 121.0394], {icon: blueIcon}).addTo(mymap)
+        .bindPopup("觀塘工業專業港<br>(工業港口)").openPopup();
+
+    L.marker([22.6815, 120.2864], {icon: greenIcon}).addTo(mymap)
+        .bindPopup("左營港<br>(專用軍港)").openPopup();
+    </script>
+</body>
+
+</html>
